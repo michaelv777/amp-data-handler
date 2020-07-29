@@ -1,0 +1,89 @@
+plugins {
+    id 'maven-publish'
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'project-report'
+
+apply from: './versions.gradle'
+
+group = 'amp.service.common'
+archivesBaseName = 'amp-data-handler'
+description = """amp-data-handler"""
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+configurations.all {
+	exclude group: "log4j", module:"log4j"
+	exclude group: "org.slf4j", module:"slf4j-simple"
+	exclude group: 'commons-logging', module: 'commons-logging'
+}
+
+evaluationDependsOn(':amp-jpa-entities')
+evaluationDependsOn(':aws-pa-client-rest')
+evaluationDependsOn(':amp-common-api')
+
+dependencies {
+
+    compile group: 'amp.service.common', name: 'amp-jpa-entities', version:'0.0.1-SNAPSHOT'
+    compile group: 'amp.service.common', name: 'aws-pa-client-rest', version:'0.0.1-SNAPSHOT'
+    compile group: 'amp.service.common', name: 'amp-common-api', version:'0.0.1-SNAPSHOT'
+    
+    //Logging API
+	compile group: 'org.slf4j' , name: 'slf4j-api', version: "$sl4j_version"
+	//Logging log4j2 implementation for logging API above
+	compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: "$log4j2_version"
+	//Logging log4j2 Commons Logging Bridge
+	compile group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: "$log4j2_version"
+	
+    compile group: 'org.springframework', name: 'spring-core', version:'5.2.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-beans', version:'5.2.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version:'5.2.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context-support', version:'5.2.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-web', version:'5.2.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-tx', version:'5.2.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-orm', version:'5.2.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-jdbc', version:'5.2.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-jms', version:'5.2.6.RELEASE'
+    compile group: 'org.springframework.batch', name: 'spring-batch-core', version:'4.2.4.RELEASE'
+    compile group: 'org.springframework.batch', name: 'spring-batch-integration', version:'4.2.4.RELEASE'
+   
+   
+    compile group: 'cglib', name: 'cglib', version:'2.1_3'
+    compile group: 'asm', name: 'asm', version:'1.5.3'
+    
+    testCompile group: 'org.springframework', name: 'spring-test', version: '5.2.6.RELEASE'
+    testCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    testCompile group: 'junit', name: 'junit', version:'4.12'
+}
+//packaging tests
+task packageTests(type: Jar) {
+  from sourceSets.test.output
+  classifier = 'tests'
+}
+artifacts.archives packageTests
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
+
+defaultTasks 'clean','build', 'generatePomFileForMavenJavaPublication', 'publishToMavenLocal', 'publish'

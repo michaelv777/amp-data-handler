@@ -1,0 +1,5 @@
+rootProject.name = 'amp-data-handler'
+
+include 'amp-jpa-entities'
+include 'aws-pa-client-rest'
+include 'amp-common-api'

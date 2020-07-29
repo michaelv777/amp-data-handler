@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>amp.data.handler</groupId>
+  <artifactId>amp-data-handler</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <parent>
+  	<groupId>amp.framework</groupId>
+  	<artifactId>amp-framework</artifactId>
+  	<version>1.0-SNAPSHOT</version>
+  </parent>
+  
+  <build> 
+	<finalName>amp-data-handler</finalName> 
+	<plugins>
+		<plugin>
+		        <artifactId>maven-compiler-plugin</artifactId>
+		        <version>3.3</version><!--$NO-MVN-MAN-VER$-->
+		        <configuration>
+		            <source>1.8</source>
+		            <target>1.8</target>
+		        </configuration>
+		  </plugin>
+		  
+		  
+	      <plugin>
+	       <groupId>org.apache.maven.plugins</groupId>
+	       <artifactId>maven-jar-plugin</artifactId>
+	       <version>3.0.2</version>
+	       <executions>
+	         <execution>
+	           <goals>
+	             <goal>test-jar</goal>
+	           </goals>
+	         </execution>
+	       </executions>
+	     </plugin>
+ 	  </plugins>
+  </build>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- <spring.framework.build>4.1.6.RELEASE</spring.framework.build> -->
+    <spring.framework.build>3.0.3.RELEASE</spring.framework.build>
+    <spring.framework.batch>3.0.3.RELEASE</spring.framework.batch>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+    	<groupId>amp.jpa.entities</groupId>
+    	<artifactId>amp-jpa-entities</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+	    <groupId>aws.pa.client.rest</groupId>
+	    <artifactId>aws-pa-client-rest</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+	</dependency>
+	
+    <dependency>
+    	<groupId>amp.common.api</groupId>
+    	<artifactId>amp-common-api</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
+   <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring.framework.build}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>${spring.framework.build}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.framework.build}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>${spring.framework.build}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>${spring.framework.build}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>${spring.framework.build}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>${spring.framework.build}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring.framework.build}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jms</artifactId>
+        <version>${spring.framework.build}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.batch</groupId>
+        <artifactId>spring-batch-core</artifactId>
+        <version>${spring.framework.batch}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.batch</groupId>
+        <artifactId>spring-batch-integration</artifactId>
+        <version>${spring.framework.batch}</version>
+      </dependency>
+     <dependency>
+        <groupId>org.springframework.batch</groupId>
+        <artifactId>spring-batch-admin-manager</artifactId>
+        <version>1.2.1.RELEASE</version>
+      </dependency>
+      
+     
+	<dependency>
+	    <groupId>log4j</groupId>
+	    <artifactId>log4j</artifactId>
+	    <version>1.2.17</version>
+	</dependency>
+     
+     <!-- https://mvnrepository.com/artifact/cglib/cglib -->
+	<dependency>
+	    <groupId>cglib</groupId>
+	    <artifactId>cglib</artifactId>
+	    <version>2.1_3</version>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/asm/asm -->
+	<dependency>
+	    <groupId>asm</groupId>
+	    <artifactId>asm</artifactId>
+	    <version>1.5.3</version>
+	</dependency>
+	
+  </dependencies>
+  <scm>
+  	<developerConnection>MVEKSLER</developerConnection>
+  </scm>
+</project>

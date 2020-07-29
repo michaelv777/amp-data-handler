@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+
+	<!-- setup a JDBC datasource connected to allmarket DB -->
+	<bean id="AllmarketDatasource" class="org.apache.commons.dbcp.OracleDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE"/>
+		<property name="username" value="allmarket"/>
+		<property name="password" value="allmarket"/>
+	</bean>		
+
+
+	<bean id="toolkitDataProvider" class="amp.common.api.impl.ToolkitDataProvider" destroy-method="freeResources" scope="prototype">
+		
+	</bean>
+	
+	<bean id="toolkitSQL" class="amp.common.api.impl.ToolkitSQL" destroy-method="freeResources" scope="prototype">
+		
+	</bean>
+	
+	<bean id="toolkitJAXB" class="amp.common.api.impl.ToolkitJAXB" scope="singleton">
+		
+	</bean>
+	
+</beans>
+
